@@ -1,9 +1,6 @@
 import board
 import digitalio
 import storage
-import usb_cdc
-import usb_hid
-
 
 # If this key is held during boot, don't run the code which hides the storage and disables serial
 # To use another key just count its row and column and use those pins
