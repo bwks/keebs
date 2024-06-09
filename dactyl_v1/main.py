@@ -4,7 +4,7 @@ from kb import KMKKeyboard
 
 from kmk.handlers.sequences import send_string, simple_key_sequence
 from kmk.keys import KC
-from kmk.modules.holdtap import HoldTap
+from kmk.modules.holdtap import HoldTap, HoldTapRepeat
 from kmk.modules.layers import Layers
 from kmk.modules.split import Split, SplitSide, SplitType
 
@@ -23,6 +23,10 @@ keyboard.modules.append(split)
 
 # Hold Tap
 holdtap = HoldTap()
+holdtap.tap_time = 500
+holdtap.tap_interupted = False
+holdtap.prefer_hold = False
+holdtap.repeat = HoldTapRepeat.TAP
 keyboard.modules.append(holdtap)
 
 HASH_ROCKET = send_string("=>")
@@ -34,8 +38,8 @@ DOUBLE_COLON = send_string("::")
 MEH = KC.LCTRL(KC.LSFT(KC.LALT)) 
 
 # Layer keys
-L1_D = KC.HT(KC.D, KC.MO(1), tap_interrupted=False)
-L2_S = KC.HT(KC.S, KC.MO(2), tap_interrupted=False)
+L1 = KC.MO(1)
+L2 = KC.MO(2)
 
 
 # Easier to see in layout
@@ -71,8 +75,8 @@ keyboard.keymap = [
     [   # Layer 0
         KC.GRAVE,    KC.N1,       KC.N2,           KC.N3,          KC.N4,        KC.N5,        KC.N6,          KC.N7,       KC.N8,         KC.N9,          KC.N0,          KC.BSPACE,
         KC.TAB,      KC.Q,        KC.W,            KC.E,           KC.R,         KC.T,         KC.Y,           KC.U,        KC.I,          KC.O,           KC.P,           KC.BSLS,
-        XXXXX,       KC.A,        L2_S,            L1_D,           KC.F,         KC.G,         KC.H,           KC.J,        KC.K,          KC.L,           KC.SCLN,        KC.QUOTE,
-        XXXXX,       KC.Z,        KC.X,            KC.C,           KC.V,         KC.B,         KC.N,           KC.M,        KC.COMM,       KC.DOT,         KC.SLSH,        XXXXX,
+        L1,          KC.A,        KC.S,             KC.D,           KC.F,         KC.G,         KC.H,           KC.J,        KC.K,          KC.L,           KC.SCLN,        KC.QUOTE,
+        L2,          KC.Z,        KC.X,            KC.C,           KC.V,         KC.B,         KC.N,           KC.M,        KC.COMM,       KC.DOT,         KC.SLSH,        XXXXX,
         XXXXX,       XXXXX,       KC.LCTRL,        KC.LSHIFT,      KC.LALT,      XXXXX,        XXXXX,          KC.ESC,      KC.ENTER,      KC.SPACE,       XXXXX,          XXXXX,
                                                                    XXXXX,        KC.LGUI,
     ],
