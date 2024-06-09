@@ -13,7 +13,6 @@ from storage import getmount
 keyboard = KMKKeyboard()
 
 keyboard.modules.append(Layers())
-keyboard.modules.append(HoldTap())
 
 data_pin_1 = board.TX if str(getmount('/').label).endswith("L") else board.RX
 data_pin_2 = board.RX if str(getmount('/').label).endswith("L") else board.TX  # Future use
@@ -22,6 +21,9 @@ data_pin_2 = board.RX if str(getmount('/').label).endswith("L") else board.TX  #
 split = Split(split_type=SplitType.UART, use_pio=True, data_pin=data_pin_1)
 keyboard.modules.append(split)
 
+# Hold Tap
+holdtap = HoldTap()
+keyboard.modules.append(holdtap)
 
 HASH_ROCKET = send_string("=>")
 HASH_BRACKET = send_string("#[]")
@@ -31,6 +33,12 @@ WALRUS = send_string(":=")
 DOUBLE_COLON = send_string("::")
 MEH = KC.LCTRL(KC.LSFT(KC.LALT)) 
 
+# Layer keys
+L1_D = KC.HT(KC.D, KC.MO(1), tap_interrupted=False)
+L2_S = KC.HT(KC.S, KC.MO(2), tap_interrupted=False)
+
+
+# Easier to see in layout
 _____ = KC.TRNS
 XXXXX = KC.NO
 
@@ -44,7 +52,7 @@ VIM_QUIT = simple_key_sequence(
 )
 VIM_WR = simple_key_sequence(
     (
-        KC.ESC,
+        KC.ESC,     
         send_string(":"),
         KC.W,
     )
@@ -63,16 +71,16 @@ keyboard.keymap = [
     [   # Layer 0
         KC.GRAVE,    KC.N1,       KC.N2,           KC.N3,          KC.N4,        KC.N5,        KC.N6,          KC.N7,       KC.N8,         KC.N9,          KC.N0,          KC.BSPACE,
         KC.TAB,      KC.Q,        KC.W,            KC.E,           KC.R,         KC.T,         KC.Y,           KC.U,        KC.I,          KC.O,           KC.P,           KC.BSLS,
-        KC.MO(1),    KC.A,        KC.S,            KC.D,           KC.F,         KC.G,         KC.H,           KC.J,        KC.K,          KC.L,           KC.SCLN,        KC.QUOTE,
-        KC.MO(2),    KC.Z,        KC.X,            KC.C,           KC.V,         KC.B,         KC.N,           KC.M,        KC.COMM,       KC.DOT,         KC.SLSH,        XXXXX,
+        XXXXX,       KC.A,        L2_S,            L1_D,           KC.F,         KC.G,         KC.H,           KC.J,        KC.K,          KC.L,           KC.SCLN,        KC.QUOTE,
+        XXXXX,       KC.Z,        KC.X,            KC.C,           KC.V,         KC.B,         KC.N,           KC.M,        KC.COMM,       KC.DOT,         KC.SLSH,        XXXXX,
         XXXXX,       XXXXX,       KC.LCTRL,        KC.LSHIFT,      KC.LALT,      XXXXX,        XXXXX,          KC.ESC,      KC.ENTER,      KC.SPACE,       XXXXX,          XXXXX,
                                                                    XXXXX,        KC.LGUI,
     ],
     [
         # Layer 1 
         XXXXX,       KC.F1,       KC.F2,           KC.F3,          KC.F4,        KC.F5,        KC.F6,          KC.F7,       KC.F8,         KC.F9,          KC.F10,         KC.DEL,
-        XXXXX,       VIM_QUIT,    VIM_WR_QUIT,     KC.ESC,         XXXXX,        XXXXX,        KC.MINUS,       KC.EQUAL,    KC.UP,         KC.LBRACKET,    KC.RBRACKET,    XXXXX,
-        XXXXX,       VIM_WR,      HASH_BRACKET,    XXXXX,          MEH,          XXXXX,        HASH_ROCKET,    KC.LEFT,     KC.DOWN,       KC.RIGHT,       WALRUS,         XXXXX,
+        XXXXX,       VIM_QUIT,    VIM_WR_QUIT,     XXXXX,          XXXXX,        XXXXX,        KC.MINUS,       KC.EQUAL,    KC.UP,         KC.LBRACKET,    KC.RBRACKET,    XXXXX,
+        XXXXX,       XXXXX,       VIM_WR,          XXXXX,          MEH,          XXXXX,        HASH_ROCKET,    KC.LEFT,     KC.DOWN,       KC.RIGHT,       DOUBLE_COLON,   WALRUS,
         XXXXX,       XXXXX,       XXXXX,           XXXXX,          XXXXX,        XXXXX,        XXXXX,          XXXXX,       LEFT_ARROW,    RIGHT_ARROW,    XXXXX,          XXXXX,
         XXXXX,       XXXXX,       KC.LCTRL,        KC.LSHIFT,      KC.LALT,      XXXXX,        XXXXX,          XXXXX,       XXXXX,         XXXXX,          KC.F11,         KC.F12,
                                                                    XXXXX,        XXXXX,
