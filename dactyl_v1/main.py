@@ -41,11 +41,11 @@ MEH = KC.LCTRL(KC.LSFT(KC.LALT))
 L1 = KC.MO(1)
 L2 = KC.MO(2)
 
-
 # Easier to see in layout
 _____ = KC.TRNS
 XXXXX = KC.NO
 
+# Macros
 VIM_QUIT = simple_key_sequence(
     (
         KC.ESC,
@@ -75,7 +75,7 @@ keyboard.keymap = [
     [   # Layer 0
         KC.GRAVE,    KC.N1,       KC.N2,           KC.N3,          KC.N4,        KC.N5,        KC.N6,          KC.N7,       KC.N8,         KC.N9,          KC.N0,          KC.BSPACE,
         KC.TAB,      KC.Q,        KC.W,            KC.E,           KC.R,         KC.T,         KC.Y,           KC.U,        KC.I,          KC.O,           KC.P,           KC.BSLS,
-        L1,          KC.A,        KC.S,             KC.D,           KC.F,         KC.G,         KC.H,           KC.J,        KC.K,          KC.L,           KC.SCLN,        KC.QUOTE,
+        L1,          KC.A,        KC.S,            KC.D,           KC.F,         KC.G,         KC.H,           KC.J,        KC.K,          KC.L,           KC.SCLN,        KC.QUOTE,
         L2,          KC.Z,        KC.X,            KC.C,           KC.V,         KC.B,         KC.N,           KC.M,        KC.COMM,       KC.DOT,         KC.SLSH,        XXXXX,
         XXXXX,       XXXXX,       KC.LCTRL,        KC.LSHIFT,      KC.LALT,      XXXXX,        XXXXX,          KC.ESC,      KC.ENTER,      KC.SPACE,       XXXXX,          XXXXX,
                                                                    XXXXX,        KC.LGUI,
@@ -84,7 +84,7 @@ keyboard.keymap = [
         # Layer 1 
         XXXXX,       KC.F1,       KC.F2,           KC.F3,          KC.F4,        KC.F5,        KC.F6,          KC.F7,       KC.F8,         KC.F9,          KC.F10,         KC.DEL,
         XXXXX,       VIM_QUIT,    VIM_WR_QUIT,     XXXXX,          XXXXX,        XXXXX,        KC.MINUS,       KC.EQUAL,    KC.UP,         KC.LBRACKET,    KC.RBRACKET,    XXXXX,
-        XXXXX,       XXXXX,       VIM_WR,          XXXXX,          MEH,          XXXXX,        HASH_ROCKET,    KC.LEFT,     KC.DOWN,       KC.RIGHT,       DOUBLE_COLON,   WALRUS,
+        XXXXX,       XXXXX,       VIM_WR,          HASH_BRACKET,   MEH,          XXXXX,        HASH_ROCKET,    KC.LEFT,     KC.DOWN,       KC.RIGHT,       DOUBLE_COLON,   WALRUS,
         XXXXX,       XXXXX,       XXXXX,           XXXXX,          XXXXX,        XXXXX,        XXXXX,          XXXXX,       LEFT_ARROW,    RIGHT_ARROW,    XXXXX,          XXXXX,
         XXXXX,       XXXXX,       KC.LCTRL,        KC.LSHIFT,      KC.LALT,      XXXXX,        XXXXX,          XXXXX,       XXXXX,         XXXXX,          KC.F11,         KC.F12,
                                                                    XXXXX,        XXXXX,
