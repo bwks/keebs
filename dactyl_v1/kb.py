@@ -23,7 +23,7 @@ class KMKKeyboard(_KMKKeyboard):
     )
     diode_orientation = DiodeOrientation.COL2ROW
 
-    # flake8: noqa  
+    # flake8: noqa
     # fmt: off
     coord_mapping = [
         0,  1,  2,  3,  4,  5,          41, 40, 39, 38, 37, 36,
