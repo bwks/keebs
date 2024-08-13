@@ -23,6 +23,7 @@ enum custom_keycodes
     VIM_WR,
     VIM_WRQ,
     NVM_QIT,
+    MUTE,
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
@@ -105,6 +106,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
             SEND_STRING(SS_TAP(X_ESC) SS_DELAY(50) SS_TAP(X_SPC) SS_DELAY(50) "b" SS_DELAY(50) "d");
         }
         break;
+
+    case MUTE:
+        if (record->event.pressed)
+        {
+            SEND_STRING(
+                SS_DOWN(X_LCTL) SS_DOWN(X_LALT) SS_DOWN(X_LSFT) SS_DOWN(X_LGUI)
+                    SS_DELAY(50) SS_TAP(X_DEL) SS_DELAY(50)
+                        SS_UP(X_LCTL) SS_UP(X_LALT) SS_UP(X_LSFT) SS_UP(X_LGUI));
+        }
+        break;
     }
     return true;
 };
@@ -134,7 +145,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    XXXXXXX, /* <L R> */  XXXXXXX, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS, 
       MO(LR1), KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    XXXXXXX, /* <L R> */  XXXXXXX, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, 
       MO(LR2), KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    XXXXXXX, /* <L R> */  XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_NO,  
-      XXXXXXX, XXXXXXX, KC_NO,   KC_NO,   KC_LCTL, KC_LSFT, KC_LCTL, /* <L R> */  KC_LSFT, KC_ENT,  KC_SPC,  KC_NO,   KC_NO,   XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, KC_NO,   KC_NO,   KC_LCTL, KC_LSFT, KC_LCTL, /* <L R> */  KC_LSFT, KC_ENT,  KC_SPC,  MUTE,    KC_NO,   XXXXXXX, XXXXXXX,
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LALT, KC_LGUI, /* <L R> */  KC_LGUI, KC_ESC,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
     /*=======, =======, =======, =======, =======, =======, =======, -- <L R> --  =======, =======, =======, =======, =======, =======, =======,*/
     ),
