@@ -111,9 +111,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
         if (record->event.pressed)
         {
             SEND_STRING(
-                SS_DOWN(X_LCTL) SS_DOWN(X_LALT) SS_DOWN(X_LSFT) SS_DOWN(X_LGUI)
-                    SS_DELAY(50) SS_TAP(X_DEL) SS_DELAY(50)
-                        SS_UP(X_LCTL) SS_UP(X_LALT) SS_UP(X_LSFT) SS_UP(X_LGUI));
+                SS_DOWN(X_LCTL) SS_DOWN(X_LALT) SS_DOWN(X_LSFT) SS_DOWN(X_LGUI) SS_TAP(X_DEL) SS_UP(X_LCTL) SS_UP(X_LALT) SS_UP(X_LSFT) SS_UP(X_LGUI));
         }
         break;
     }
